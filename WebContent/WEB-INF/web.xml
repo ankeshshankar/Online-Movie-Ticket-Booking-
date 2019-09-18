@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>BookMyShow</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+    <description></description>
+    <display-name>LoginCheck</display-name>
+    <servlet-name>LoginCheck</servlet-name>
+    <servlet-class>com.show.Contoller.LoginCheck</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginCheck</servlet-name>
+    <url-pattern>/LoginCheck</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>RegisterUser</display-name>
+    <servlet-name>RegisterUser</servlet-name>
+    <servlet-class>com.show.Contoller.RegisterUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterUser</servlet-name>
+    <url-pattern>/RegisterUser</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>LoadScreens</display-name>
+    <servlet-name>LoadScreens</servlet-name>
+    <servlet-class>com.show.Contoller.LoadScreens</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoadScreens</servlet-name>
+    <url-pattern>/LoadScreens</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>LoadMovies</display-name>
+    <servlet-name>LoadMovies</servlet-name>
+    <servlet-class>com.show.Contoller.LoadMovies</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoadMovies</servlet-name>
+    <url-pattern>/LoadMovies</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>LoadTickets</display-name>
+    <servlet-name>LoadTickets</servlet-name>
+    <servlet-class>com.show.Contoller.LoadTickets</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoadTickets</servlet-name>
+    <url-pattern>/LoadTickets</url-pattern>
+  </servlet-mapping>
+
+</web-app>

@@ -1,0 +1,133 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+
+<%@page import="java.util.List"%>
+
+<%@page import="com.show.Entity.*"%>
+<%@page import="com.show.Database.JpaConnection"%>
+
+<%
+	List<Movie> results = JpaConnection.getMovie();
+	String movieName  = (String)request.getParameter("movieName");
+	String cityName = (String) session.getAttribute("cityName");
+	String userName = (String) session.getAttribute("userName");
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="./css/bootstrap.min.css">
+<link rel="stylesheet" href="./css/myCss.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Anton|Righteous&display=swap"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+
+<meta charset="UTF-8">
+<title>Book Tickets</title>
+</head>
+<body>
+	<form method="post">
+		<div class="container-fluid ">
+			<div class="row justify-content-end p-2 bg-warning ">
+				<div class="form-group m-1">
+					<label style="font-family: 'Righteous', cursive;"
+						class="text-danger">Book</label> <label
+						style="font-family: 'Righteous', cursive;" class="text-dark">My</label>
+					<label style="font-family: 'Righteous', cursive;"
+						class="text-danger">Show</label> <label
+						style="font-family: 'Righteous', cursive;" class="text-dark">,</label>
+				</div>
+				<div class=" form-group m-1 ">
+					<label id="time"></label> <label id="userName">,<%=userName%></label>
+				</div>
+				<img src="./images/man.png" height="40" width="40"
+					class="rounded-circle dropdown-toggle " id="profile"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+				<div class="dropdown-menu" aria-labelledby="profile">
+					<div>
+						<input type="submit" class="btn btn-link" value="View Profile"
+							formaction="./LoadMovies?cityName=profile">
+					</div>
+					<div>
+						<input type="submit" class="btn btn-link" value="Logout"
+							formaction="./LoadMovies?cityName=logout">
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid py-1" id="movieCard">
+			<div class="row">
+				<%
+					int no = 1;
+					for (Movie getMovie : results) {
+						if (getMovie.getMovie_name().equals(movieName)) {
+				%>
+				<div class="cal-sm-4 m-2 ">
+					<div class="card h-100" style="width: 14rem;">
+						<img class="card-img-top" src="./images/movie/<%=no%>.jpg"
+							alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title movieName"
+								style="font-family: 'Righteous', cursive;"><%=getMovie.getMovie_name()%></h5>
+							<p class="card-text"><%=getMovie.getMovie_about()%></p>
+						</div>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item"><%=getMovie.getMovie_release_date()%></li>
+							<li class="list-group-item"><%=getMovie.getMovie_lang()%></li>
+						</ul>
+					</div>
+				</div>
+				<%
+					}
+						no++;
+					}
+				%>
+				<div class="container m-1">
+					<div class="btn-group d-flex justify-content-around m-1" role="group">
+						<button type="button" class="btn screen_a"
+							style="font-family: 'Righteous', cursive;">Screen No 1</button>
+						<button type="button" class="btn screen_b"
+							style="font-family: 'Righteous', cursive;">Screen No 2</button>
+						<button type="button" class="btn screen_c"
+							style="font-family: 'Righteous', cursive;">Screen No 3</button>
+					</div>
+					<div class="container-fluid border border-danger">
+						<div id="chooseScreen"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">
+		var date = new Date();
+		var time = date.getHours();
+		if (time < 12) {
+			document.getElementById("time").innerText = "Good Morning";
+		} else if (time > 12) {
+			document.getElementById("time").innerText = "Good Afternoon";
+		} else if (time === 12) {
+			document.getElementById("time").innerText = "Good Night ";
+		}
+		$(document).ready(function(){
+	        $('.screen_a').click(function(){
+	            $('#chooseScreen').load("./pages/ScreenOne.jsp");
+	        })
+	        $('.screen_b').click(function(){
+	            $('#chooseScreen').load("./pages/ScreenOne.jsp");
+	        })
+	        $('.screen_c').click(function(){
+	            $('#chooseScreen').load("./pages/ScreenOne.jsp");
+	        })
+	    });
+	</script>
+</body>
+</html>
+
